@@ -1,0 +1,61 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Liste des parties</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Liste des parties</h1>
+			
+			<p>
+				<a th:href="@{/othello/create}" class="btn btn-secondary" role="button" aria-pressed="true">Nouvelle partie</a>
+			</p>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Joueur Noir</th>
+						<th>Joueur Blanc</th>
+						<th>Etat</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="game : ${games}" th:object="${game}">
+						<td th:text="*{black.username}">Pierrot</td>
+						<td th:text="*{white.username}">Dédé</td>
+						<td>
+							<span th:if="${game.status.name() == 'STARTED'}" th:text="|Tour : ${game.turn.name() == 'BLACK' ? 'Noir' : 'Blanc'}|"></span>
+							<span th:if="${game.status.name() == 'FINISHED'}" th:text="|Victoire : ${game.winner.username}|"></span>
+						</td>
+						<td>
+							<a th:href="@{|/othello/play/*{id}|}" class="btn btn-primary" role="button">
+								<span class="oi oi-pencil" title="Continuer" aria-hidden="true"></span>
+							</a>
+							<a th:href="@{|/othello/delete/*{id}|}" class="btn btn-danger" role="button">
+								<span class="oi oi-delete" title="Supprimer" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+					<tr th:if="${games.totalElements == 0}">
+						<td colspan="4">Aucune partie</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<nav aria-label="Page navigation" th:if="${games.totalPages > 0}">
+				<ul class="pagination">
+					<li class="page-item" th:classappend="${games.getNumber() == 0} ? disabled">
+						<a class="page-link" href="#" th:href="@{/othello/list(page=${games.getNumber() - 1})}">Précédent</a>
+					</li>
+					<li class="page-item" th:classappend="${games.getNumber() == page - 1} ? active"
+						th:each="page: ${#numbers.sequence(1, games.totalPages)}">
+						<a th:text="${page}" class="page-link" href="#" th:href="@{/othello/list(page=${page - 1})}"></a>
+					</li>
+					<li class="page-item" th:classappend="${games.getNumber() == games.totalPages - 1} ? disabled">
+						<a class="page-link" href="#" th:href="@{/othello/list(page=${games.getNumber() + 1})}">Suivant</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</body>
+</html>

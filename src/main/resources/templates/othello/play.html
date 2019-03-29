@@ -1,0 +1,31 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title" th:text="|${game.black.username} contre ${game.white.username}|"></title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1 th:if="${game.turn != null}">Tour : <span th:text="${game.turn.name() == 'BLACK'} ? 'Noir' : 'Blanc'">Noir</span></h1>
+			<h1 th:if="${game.turn == null}">Partie terminée</h1>
+			<div>
+				Score :
+				<ul>
+					<li>Noir (<span th:text="${game.black.username}">Piere</span>) : <span th:text="${game.blackScore}">2</span></li>
+					<li>Blanc (<span th:text="${game.white.username}">Piere</span>) : <span th:text="${game.whiteScore}">2</span></li>
+				</ul>
+			
+			</div>
+			
+			<div class="alert alert-danger" role="alert" th:if="${message}" th:text="${message}"></div>
+			<table class="othello-board">
+				<tr th:each="y: ${#numbers.sequence(0, game.size.height - 1)}">
+					<td th:each="x: ${#numbers.sequence(0, game.size.width - 1)}">
+						<a href="#" class="pawn"
+							th:classappend="${#strings.toLowerCase(game.getPawnColorAt(x, y))}"
+							th:href="@{|/othello/play/${game.id}/${x}/${y}|}"></a>
+					</td>
+				</tr>
+			</table>
+			
+		</div>
+	</body>
+</html>

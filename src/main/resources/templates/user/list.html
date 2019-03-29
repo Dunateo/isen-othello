@@ -1,0 +1,60 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Gestion des utilisateurs</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Gestion des utilisateurs</h1>
+			
+			<p>
+				<a th:href="@{/user/add}" class="btn btn-secondary" role="button" aria-pressed="true">Ajouter une personne</a>
+			</p>
+			
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th>Pseudo</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Email</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user : ${users}" th:object="${user}">
+						<td th:text="*{username}">Pierrot</td>
+						<td th:text="*{firstname}">Pierre</td>
+						<td th:text="*{name}">Richard</td>
+						<td th:text="*{email}">Richard</td>
+						<td>
+							<a th:href="@{|/user/edit/*{id}|}" class="btn btn-primary" role="button">
+								<span class="oi oi-pencil" title="Modifier" aria-hidden="true"></span>
+							</a>
+							<a th:href="@{|/user/delete/*{id}|}" class="btn btn-danger" role="button">
+								<span class="oi oi-delete" title="Supprimer" aria-hidden="true"></span>
+							</a>
+						</td>
+					</tr>
+					<tr th:if="${users.totalElements == 0}">
+						<td colspan="5">Aucun utilisateur</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<nav aria-label="Page navigation" th:if="${users.totalPages > 0}">
+				<ul class="pagination">
+					<li class="page-item" th:classappend="${users.getNumber() == 0} ? disabled">
+						<a class="page-link" href="#" th:href="@{/user(page=${users.getNumber() - 1})}">Précédent</a>
+					</li>
+					<li class="page-item" th:classappend="${users.getNumber() == page - 1} ? active"
+						th:each="page: ${#numbers.sequence(1, users.totalPages)}">
+						<a th:text="${page}" class="page-link" href="#" th:href="@{/user(page=${page - 1})}"></a>
+					</li>
+					<li class="page-item" th:classappend="${users.getNumber() == users.totalPages - 1} ? disabled">
+						<a class="page-link" href="#" th:href="@{/user(page=${users.getNumber() + 1})}">Suivant</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</body>
+</html>

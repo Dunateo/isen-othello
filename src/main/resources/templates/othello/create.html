@@ -1,0 +1,37 @@
+<html th:replace="~{layout :: layout(~{::title}, ~{::content})}" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title th:fragment="title">Création d'une partie</title>
+	</head>
+	<body>
+		<div th:fragment="content">
+			<h1>Creation d'une nouvelle partie</h1>
+			
+			<div class="alert alert-danger" role="alert" th:if="${message}" th:text="${message}"></div>
+			<form action="#" th:action="@{/othello/create}" th:object="${game}" method="post">
+				<div class="form-group">
+					<label for="player_black">Joueur noir</label>
+					<select class="form-control" id="player_black" th:field="*{black}">
+						<option th:each="c : ${users}" th:value="${c.id}" th:text="${c.username}"></option>
+					</select>
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('black')}" th:errors="*{black}">Joueur invalide</div>
+				</div>
+				<div class="form-group">
+					<label for="player_white">Joueur blanc</label>
+					<select class="form-control" id="player_white" th:field="*{white}">
+						<option th:each="c : ${users}" th:value="${c.id}" th:text="${c.username}"></option>
+					</select>
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('white')}" th:errors="*{white}">Joueur invalide</div>
+				</div>
+				<div class="form-group">
+					<label for="game_size">Taille de la grille</label>
+					<select class="form-control" id="game_size" th:field="*{size}">
+						<option th:each="c : ${sizes}" th:value="${c.name()}" th:text="${c.toString()}"></option>
+					</select>
+					<div class="alert alert-danger" th:if="${#fields.hasErrors('size')}" th:errors="*{size}">Taille invalide</div>
+				</div>
+								
+				<button type="submit" class="btn btn-primary">Enregistrer</button>
+			</form>
+		</div>
+	</body>
+</html>

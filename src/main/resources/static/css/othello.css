@@ -1,0 +1,23 @@
+.othello-board td {
+	border: 1px solid black;
+}
+
+.othello-board .pawn {
+	border-radius: 50%;
+	
+	width: 40px;
+	height: 40px;
+	display:block;
+}
+
+.othello-board .pawn.white {
+	background-color: white;
+	border: 1px solid black;
+	box-shadow: inset -5px -5px 10px #000; 
+}
+
+.othello-board .pawn.black {
+	background-color: black;
+	border: 1px solid black;
+	box-shadow: inset 5px 5px 10px #999;
+}

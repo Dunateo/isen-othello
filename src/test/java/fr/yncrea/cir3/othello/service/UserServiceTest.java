@@ -1,23 +1,22 @@
 package fr.yncrea.cir3.othello.service;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Optional;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import fr.yncrea.cir3.othello.domain.User;
 import fr.yncrea.cir3.othello.form.UserForm;
 import fr.yncrea.cir3.othello.repository.OthelloGameRepository;
 import fr.yncrea.cir3.othello.repository.UserRepository;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class UserServiceTest {
 	@Mock
 	private UserRepository users;

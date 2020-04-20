@@ -2,6 +2,7 @@ package fr.yncrea.cir3.othello.service;
 
 import fr.yncrea.cir3.othello.domain.User;
 import fr.yncrea.cir3.othello.exception.othello.OthelloCreateGameException;
+import fr.yncrea.cir3.othello.domain.othello.OthelloGameSize ;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +21,7 @@ public class OthelloGameServicesTest {
     public void testCannotStartGameWithoutPlayer(){
 
         assertThrows(OthelloCreateGameException.class,() ->{
-            service.create(null, null, OthelloGameService.EIGHT);
+            service.create(null, null, OthelloGameSize.EIGHT);
         });
 
 

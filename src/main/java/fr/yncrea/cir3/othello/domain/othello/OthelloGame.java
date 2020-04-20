@@ -92,4 +92,92 @@ public class OthelloGame {
 		whiteScore = (int) pawns.stream().filter(e -> e.getColor() == OthelloPawnColor.WHITE).count();
 		blackScore = (int) pawns.stream().filter(e -> e.getColor() == OthelloPawnColor.BLACK).count();
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreated() {
+		return created;
+	}
+
+	public void setCreated(LocalDateTime created) {
+		this.created = created;
+	}
+
+	public OthelloGameSize getSize() {
+		return size;
+	}
+
+	public void setSize(OthelloGameSize size) {
+		this.size = size;
+	}
+
+	public User getWhite() {
+		return white;
+	}
+
+	public void setWhite(User white) {
+		this.white = white;
+	}
+
+	public User getBlack() {
+		return black;
+	}
+
+	public void setBlack(User black) {
+		this.black = black;
+	}
+
+	public OthelloPawnColor getTurn() {
+		return turn;
+	}
+
+	public void setTurn(OthelloPawnColor turn) {
+		this.turn = turn;
+	}
+
+	public OthelloGameStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(OthelloGameStatus status) {
+		this.status = status;
+	}
+
+	public int getWhiteScore() {
+		return whiteScore;
+	}
+
+	public void setWhiteScore(int whiteScore) {
+		this.whiteScore = whiteScore;
+	}
+
+	public int getBlackScore() {
+		return blackScore;
+	}
+
+	public void setBlackScore(int blackScore) {
+		this.blackScore = blackScore;
+	}
+
+	public User getWinner() {
+		return winner;
+	}
+
+	public void setWinner(User winner) {
+		this.winner = winner;
+	}
+
+	public List<OthelloPawn> getPawns() {
+		return pawns;
+	}
+
+	public void setPawns(List<OthelloPawn> pawns) {
+		this.pawns = pawns;
+	}
 }

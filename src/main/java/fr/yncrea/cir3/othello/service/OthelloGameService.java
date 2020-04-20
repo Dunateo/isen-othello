@@ -143,13 +143,13 @@ public class OthelloGameService {
 		
 		// test if new player can play
 		game.setTurn(game.getTurn().next());
-		if (allowedMoves(game).isEmpty() == false) {
+		if (!allowedMoves(game).isEmpty() ) {
 			return;
 		}
 
 		// if not, switch again
 		game.setTurn(game.getTurn().next());
-		if (allowedMoves(game).isEmpty() == false) {
+		if (!allowedMoves(game).isEmpty()) {
 			return;
 		}
 		

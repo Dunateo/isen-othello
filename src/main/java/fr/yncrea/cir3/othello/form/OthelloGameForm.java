@@ -18,4 +18,28 @@ public class OthelloGameForm {
 	
 	@StringEnumeration(enumClass = OthelloGameSize.class, message = "Taille invalide")
 	private String size;
+
+	public Long getWhite() {
+		return white;
+	}
+
+	public void setWhite(Long white) {
+		this.white = white;
+	}
+
+	public Long getBlack() {
+		return black;
+	}
+
+	public void setBlack(Long black) {
+		this.black = black;
+	}
+
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
 }
